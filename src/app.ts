@@ -1,6 +1,8 @@
-import ProjectInput from "./ProjectInput";
-import ProjectList from "./ProjectList";
+/// <reference path="./components/project-input.ts" />
+/// <reference path="./components/project-list.ts" />
 
-const prjInput = new ProjectInput();
-const activePrjList = new ProjectList("active");
-const finishedPrjList = new ProjectList("finished");
+namespace App {
+  new ProjectInput();
+  new ProjectList("active");
+  new ProjectList("finished");
+}
