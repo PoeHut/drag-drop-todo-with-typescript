@@ -1,8 +1,6 @@
 import Component from "./Component";
-import ProjectState from "./ProjectState";
+import ProjectStateInstance from "./ProjectState";
 import { Validation, UtilFn } from "./utils";
-
-const projectState = ProjectState.getInstance();
 
 export default class ProjectInput extends Component<
   HTMLDivElement,
@@ -80,7 +78,7 @@ export default class ProjectInput extends Component<
 
     if (Array.isArray(userInput)) {
       const [title, desc, people] = userInput;
-      projectState.addProject(title, desc, people);
+      ProjectStateInstance.addProject(title, desc, people);
       this.clearInputs();
     }
   }

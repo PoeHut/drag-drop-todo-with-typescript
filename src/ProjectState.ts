@@ -9,7 +9,7 @@ class State<T> {
   }
 }
 
-export default class ProjectState extends State<Project> {
+class ProjectState extends State<Project> {
   private projects: Project[] = [];
   private static instance: ProjectState;
 
@@ -53,3 +53,7 @@ export default class ProjectState extends State<Project> {
     }
   }
 }
+
+const ProjectStateInstance = ProjectState.getInstance();
+
+export default ProjectStateInstance;

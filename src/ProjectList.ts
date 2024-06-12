@@ -1,11 +1,10 @@
 import Project from "./Project";
-import ProjectState from "./ProjectState";
+import ProjectStateInstance from "./ProjectState";
 import Component from "./Component";
 import * as Types from "./types";
 import ProjectItem from "./ProjectItem";
 import { UtilFn } from "./utils";
 
-const projectState = ProjectState.getInstance();
 export default class ProjectList
   extends Component<HTMLDivElement, HTMLElement>
   implements Types.DragTarget
@@ -33,7 +32,7 @@ export default class ProjectList
   dropHandler(event: DragEvent): void {
     const projectId = event.dataTransfer!.getData("text/plain");
 
-    projectState.moveProject(
+    ProjectStateInstance.moveProject(
       projectId,
       this.type === "active"
         ? Types.ProjectStatus.Active
@@ -52,7 +51,7 @@ export default class ProjectList
     this.element.addEventListener("dragleave", this.dragLeaveHandler);
     this.element.addEventListener("drop", this.dropHandler);
 
-    projectState.addListener((projects: Project[]) => {
+    ProjectStateInstance.addListener((projects: Project[]) => {
       const relevantProjects = projects.filter((prj) => {
         if (this.type === "active") {
           return prj.status === Types.ProjectStatus.Active;
